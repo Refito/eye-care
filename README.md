@@ -38,3 +38,7 @@ open "build/Eye Care.app" --args --preview
 The build script creates a local ad hoc signature. Sharing with other Macs requires your own Developer ID signing and notarization. Launch at login uses Apple's ServiceManagement API; macOS may require approval in Login Items.
 
 See [PLAN.md](PLAN.md) for the product scope. Core timer, schedule, and persistence code lives in `Sources/EyeCareCore`; native UI and integrations live in `Sources/EyeCare`.
+
+## License
+
+Eye Care is licensed under the [MIT License](LICENSE).
