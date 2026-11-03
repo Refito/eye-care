@@ -41,3 +41,6 @@ jobs:
           codesign --verify --strict "build/Eye Care.app"
           plutil -lint "build/Eye Care.app/Contents/Info.plist"
           file "build/Eye Care.app/Contents/MacOS/EyeCare"
+      - name: Verify universal release packaging
+        if: matrix.runner == 'macos-15'
+        run: bash scripts/release.sh --unsigned

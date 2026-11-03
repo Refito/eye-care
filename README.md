@@ -36,6 +36,8 @@ Click the **eye icon** in the menu bar. Right-click it for pause, log, and quit.
 
 The build script creates a local ad hoc signature for development. A future downloadable release needs Developer ID signing and notarization for normal distribution under macOS's default Gatekeeper settings.
 
+Universal ZIP packaging and a signing/notarization script are available. See the [release guide](docs/RELEASING.md) for Apple credential setup and release commands. Development builds still target the host Mac by default; release builds include Apple Silicon and Intel.
+
 ## How it works
 
 <p align="center">
