@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:eye-care}",
+      "name": "Debug EyeCare",
+      "target": "EyeCare",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug EyeCare"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:eye-care}",
+      "name": "Release EyeCare",
+      "target": "EyeCare",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release EyeCare"
+    }
+  ]
+}

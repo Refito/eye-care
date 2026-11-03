@@ -1,0 +1,11 @@
+# Swift build outputs and local package state
+.build/
+.swiftpm/
+build/
+
+# Xcode user settings
+xcuserdata/
+*.xcuserstate
+
+# macOS metadata
+.DS_Store
