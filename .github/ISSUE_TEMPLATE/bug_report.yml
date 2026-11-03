@@ -1,0 +1,55 @@
+name: Bug report
+description: Report a problem with Eye Care.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: Search existing issues first. Use sample data and remove personal information from screenshots or logs.
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit
+      placeholder: "For example: 1.0.0 or a Git commit hash"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "For example: macOS 15.7"
+    validations:
+      required: true
+  - type: dropdown
+    id: processor
+    attributes:
+      label: Processor
+      options:
+        - Apple Silicon
+        - Intel
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open Eye Care…"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Include relevant notification permissions, sound settings, sleep/lock behavior, or screenshots with sample data. Do not attach your personal history file.

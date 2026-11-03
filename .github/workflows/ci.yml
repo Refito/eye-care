@@ -1,0 +1,43 @@
+name: macOS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: Test and build (${{ matrix.runner }})
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Show toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+          uname -m
+      - name: Run tests
+        run: bash scripts/test.sh
+      - name: Build app
+        run: bash scripts/build.sh
+      - name: Verify app bundle
+        run: |
+          codesign --verify --strict "build/Eye Care.app"
+          plutil -lint "build/Eye Care.app/Contents/Info.plist"
+          file "build/Eye Care.app/Contents/MacOS/EyeCare"

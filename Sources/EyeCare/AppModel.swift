@@ -21,7 +21,7 @@ final class AppModel: ObservableObject {
     var onStatusChange: (() -> Void)?
 
     private let store: DataStore
-    private let notifications = Notifications()
+    private lazy var notifications = Notifications()
     private let restCompletionSound = NSSound(named: NSSound.Name("Glass"))
     private var timer: Timer?
     private var suspensions: Set<String> = []
@@ -29,10 +29,20 @@ final class AppModel: ObservableObject {
     private var lastDay = Calendar.current.startOfDay(for: Date())
     private var canSave = true
 
-    init() {
+    // Offscreen documentation renders use sample data without loading personal history,
+    // starting timers, or scheduling system notifications.
+    init(previewData: CareData? = nil, previewDate: Date = Date(), previewClock: BreakClock? = nil) {
         let support = FileManager.default.urls(
             for: .applicationSupportDirectory, in: .userDomainMask)[0]
         store = DataStore(url: support.appendingPathComponent("EyeCare/data.json"))
+        if let previewData {
+            data = previewData
+            now = previewDate
+            clock = previewClock ?? BreakClock(now: previewDate)
+            notificationStatus = .authorized
+            canSave = false
+            return
+        }
         do { data = try store.load() } catch {
             canSave = false
             errorMessage =
